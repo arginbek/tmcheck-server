@@ -11,6 +11,8 @@ var UserController = require('../../controllers/user.controller');
 
 router.get('/', UserController.getUsers)
 
+router.get('/:username', UserController.findUserByUsername)
+
 router.post('/', UserController.createUser)
 
 router.put('/', UserController.updateUser)

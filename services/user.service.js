@@ -36,7 +36,8 @@ exports.createUser = async function (user) {
         lastname: user.lastname,
         email: user.email,
         username: user.username,
-        role: user.role
+        role: user.role,
+        password: user.password
     })
 
     try {
@@ -49,6 +50,16 @@ exports.createUser = async function (user) {
 
         // return a Error message describing the reason     
         throw Error("Error while Creating User")
+    }
+}
+
+exports.findUserByUserName = async function (username){
+    try {
+        var user = await User.find({username: username});
+
+        return user;
+    } catch(e){
+        throw Error("Error occured while Finding the User");
     }
 }
 

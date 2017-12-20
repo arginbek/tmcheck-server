@@ -42,13 +42,14 @@ exports.createUser = async function(req, res, next){
         lastname: req.body.lastname,
         email: req.body.email,
         username: req.body.username,
-        role: req.body.role
+        role: req.body.role,
+        password: req.body.password
     }
 
     try{
         
         // Calling the Service function with the new object from the Request Body
-    
+    console.log('user from server--'+user);
         var createdUser = await UserService.createUser(user)
         return res.status(201).json({status: 201, data: createdUser, message: "Succesfully Created User"})
     }catch(e){
@@ -100,3 +101,17 @@ exports.removeUser = async function(req, res, next){
     }
 
 }
+
+exports.findUserByUsername = async function(req, res, next){
+    
+        var username = req.params.username;
+    
+        try{
+            var deleted = await UserService.findUserByUserName(username);
+            return res.status(204).json({status:204, message: "Succesfully User Deleted"})
+        }catch(e){
+            return res.status(400).json({status: 400, message: e.message})
+        }
+    
+    }
+
