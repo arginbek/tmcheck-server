@@ -42,7 +42,8 @@ exports.createUser = async function(req, res, next){
         lastname: req.body.lastname,
         email: req.body.email,
         username: req.body.username,
-        role: req.body.role
+        role: req.body.role,
+        password: req.body.password
     }
 
     try{
@@ -100,3 +101,4 @@ exports.removeUser = async function(req, res, next){
     }
 
 }
+

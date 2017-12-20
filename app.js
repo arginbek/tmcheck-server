@@ -6,18 +6,19 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var bluebird = require('bluebird')
 
+var mongoose = require('mongoose');
+var passport = require('passport');
+mongoose.Promise = bluebird;
+mongoose.connect('mongodb://127.0.0.1:27017/tmcheck', { useMongoClient: true})
+.then(()=> { console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/tmcheck`)})
+.catch(()=> { console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/tmcheck`)})
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var api = require('./routes/api.route');
 
 var app = express();
-
-var mongoose = require('mongoose');
-mongoose.Promise = bluebird;
-mongoose.connect('mongodb://127.0.0.1:27017/tmcheck', { useMongoClient: true})
-.then(()=> { console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/tmcheck`)})
-.catch(()=> { console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/tmcheck`)})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,8 +29,12 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, authorization");
   next();
 });
+
+// Password
+app.use(passport.initialize());
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
