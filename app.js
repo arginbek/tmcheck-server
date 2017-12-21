@@ -17,6 +17,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var api = require('./routes/api.route');
+var appo=require('./routes/appointment');
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/appo', appo);
 
 app.use('/api', api);
 

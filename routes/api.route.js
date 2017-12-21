@@ -10,6 +10,7 @@ var UserController = require('../controllers/user.controller');
 var router = express.Router()
 var users = require('./api/user.route')
 var User = require('../models/user.model')
+var appos = require('./api/appointment.route')
 
 router.post('/signin', function(req, res) {
     User.findOne({
@@ -40,6 +41,7 @@ router.post('/signin', function(req, res) {
   });
 
 router.use('/users', users);
+router.use('/appo', appos);
 
 
 module.exports = router;
