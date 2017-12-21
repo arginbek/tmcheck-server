@@ -30,7 +30,7 @@ router.post('/signin', function(req, res) {
             console.log(decoded);
 
             // return the information including token as JSON
-            res.json({success: true, token: 'JWT ' + token});
+            res.json({success: true, role: user.toJSON().role, token: 'JWT ' + token});
           } else {
             res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
           }
