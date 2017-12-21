@@ -31,7 +31,7 @@ router.post('/signin', function(req, res) {
             console.log(decoded);
 
             // return the information including token as JSON
-            res.json({success: true, role: user.toJSON().role, username: user.toJSON.username, token: 'JWT ' + token});
+            res.json({success: true, role: user.toJSON().role, username: user.toJSON().username, token: 'JWT ' + token});
           } else {
             res.status(401).send({success: false, msg: 'Authentication failed. Wrong password.'});
           }
@@ -41,7 +41,7 @@ router.post('/signin', function(req, res) {
   });
 
 router.use('/users', users);
-router.use('/appo', appos);
+router.use('/appointments', appos);
 
 
 module.exports = router;

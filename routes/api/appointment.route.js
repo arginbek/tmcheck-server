@@ -11,6 +11,10 @@ var AppointmentController = require('../../controllers/appointment.controller');
 
 router.get('/', AppointmentController.getAppointment)
 
+router.get('/free', AppointmentController.getFreeAppointments)
+
+router.get('/:username', AppointmentController.getUserAppointment)
+
 router.post('/', AppointmentController.createAppointment)
 
 router.put('/', AppointmentController.updateAppointment)
