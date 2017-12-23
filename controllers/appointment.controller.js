@@ -42,7 +42,7 @@ exports.getUserAppointment = async function(req, res, next){
 
     try{
     
-        var appointments = await AppointmentService.getAppointments({customer: req.params.username}, page, limit)
+        var appointments = await AppointmentService.getAppointments({$or: [{customer: req.params.username},{counselor: req.params.username}]}, page, limit)
         
         // Return the appointment list with the appropriate HTTP Status Code and Message.
         
